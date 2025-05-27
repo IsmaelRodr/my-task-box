@@ -1,6 +1,6 @@
 const Task = require('../models/Task');
 const Category = require('../models/Category');
-const Notification = require('../models/Notification');
+const Notification = require('../models/Notifications');
 
 async function validateCategoryOwnership(req, res, next) {
   const userId = req.user.id;
@@ -11,7 +11,7 @@ async function validateCategoryOwnership(req, res, next) {
   try {
     const category = await Category.findById(categoryId);
     if (!category) return res.status(400).json({ error: 'Categoria não encontrada' });
-    if (category.user.toString() !== userId) {
+    if (category.userId.toString() !== userId) {
       return res.status(403).json({ error: 'Você não tem permissão para usar esta categoria' });
     }
     next();
@@ -27,7 +27,7 @@ async function validateTaskOwnership(req, res, next) {
   try {
     const task = await Task.findById(taskId);
     if (!task) return res.status(404).json({ error: 'Tarefa não encontrada' });
-    if (task.user.toString() !== userId) {
+    if (task.userId.toString() !== userId) {
       return res.status(403).json({ error: 'Você não tem permissão para acessar essa tarefa' });
     }
     next();
@@ -43,7 +43,7 @@ async function validateNotificationOwnership(req, res, next) {
   try {
     const notification = await Notification.findById(notificationId);
     if (!notification) return res.status(404).json({ error: 'Notificação não encontrada' });
-    if (notification.user.toString() !== userId) {
+    if (notification.userId.toString() !== userId) {
       return res.status(403).json({ error: 'Você não tem permissão para acessar essa notificação' });
     }
     next();

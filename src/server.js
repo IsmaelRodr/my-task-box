@@ -1,8 +1,8 @@
 
 const express = require('express');
 const mongoose = require('mongoose');
-const config = require('../config/config');
-const routes = require('./routes'); // Ajuste o caminho conforme seu projeto
+const config = require('./config/config');
+const routes = require('./routers'); // Ajuste o caminho conforme seu projeto
 const app = express();
 
 app.use(express.json());

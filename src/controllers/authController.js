@@ -1,36 +1,17 @@
-const User = require('../models/User');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const config = require('../../config/config');
+// src/controllers/authController.js
+const authService = require('../services/authService');
 
 class AuthController {
   async login(req, res) {
     try {
       const { email, password } = req.body;
 
-      // Busca usuário pelo email
-      const user = await User.findOne({ email });
-      if (!user) {
-        return res.status(401).json({ error: 'Email ou senha inválidos' });
-      }
+      const { token, user } = await authService.login(email, password);
 
-      // Compara a senha enviada com o hash do banco
-      const passwordMatch = await bcrypt.compare(password, user.password);
-      if (!passwordMatch) {
-        return res.status(401).json({ error: 'Email ou senha inválidos' });
-      }
-
-      // Cria token JWT (payload pode incluir id e email)
-      const token = jwt.sign(
-        { id: user._id, email: user.email },
-        config.jwtSecret,
-        { expiresIn: '1h' }
-      );
-
-      // Retorna o token e dados básicos do usuário
-      res.json({ token, user: { id: user._id, name: user.name, email: user.email } });
+      res.json({ token, user });
     } catch (error) {
-      res.status(500).json({ error: 'Erro interno do servidor' });
+      console.error('Erro no login:', error.message);
+      res.status(401).json({ error: error.message || 'Erro interno do servidor' });
     }
   }
 }
