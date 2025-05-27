@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - My Task box</title>
+    <link rel="stylesheet" href="./css/global.css">
+    <link rel="stylesheet" href="./css/register.css">
+    <script src="./js/register.js" defer></script>
+    <link rel="shortcut icon" href="./assets/icons8-tarefa-concluída-96.png" type="image/x-icon">
+</head>
+<body>
+    <main>
+        <section id="sec-1">
+            <div class="container-img">
+                <div class="img" style="background-image: url(./assets/icons8-tarefa-concluída-96.png);"></div>
+            </div>
+            <div class="container-text">
+                <h2>My Task box</h2>
+                <p>Organize suas tarefas e eventos acadêmicos</p>
+            </div>
+            <h3>Criar uma conta</h3>
+        </section>
+
+        <section id="sec-2">
+            <form>
+                <label class="cadastro" for="nome">
+                    <div class="icon1" style="background-image: url(./assets/icons8-usuário-32.png);"></div>
+                    Nome completo
+                    <input class="nomeeEmail" type="nome" name="nome" id="nome" placeholder="Digite seu nome completo" required>
+                </label>
+                <label class="cadastro" for="email">
+                    <div class="icon1" style="background-image: url(./assets/icons8-carta-32.png);"></div>
+                    Email
+                    <input class="nomeeEmail" type="email" name="email" id="email" placeholder="seu@email.com" required>
+                </label>
+                <label class="cadastro" for="senha">
+                    <div class="icon1" style="background-image: url(./assets/icons8-chave-32.png);"></div>
+                    Senha
+                    <input class="senha" type="password" name="senha" id="senha" placeholder="Crie uma senha segura" required>
+                    <button id="olho" class="icon2" type="button" onclick="olhoAtual()" style="background-image: url(./assets/icons8-invisível-24.png)">       
+                    </button>
+                </label>
+                <label class="cadastro" for="senha">
+                    <div class="icon1" style="background-image: url(./assets/icons8-chave-32.png);"></div>
+                    Confirme a senha
+                    <input class="senha" type="password" name="senha" id="senha1" placeholder="Digite sua senha novamente" required>
+                    <button id="olho1" class="icon2" type="button" onclick="olhoAtual1()" style="background-image: url(./assets/icons8-invisível-24.png)">       
+                    </button>
+                </label>
+                <input type="submit" value="Entrar" id="Entrar">
+            </form>
+            <div class="container-text">
+                <p>Já tem uma conta?</p>
+                <a href="./login.html">Fazer login</a>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>
