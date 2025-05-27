@@ -23,3 +23,6 @@ function mudarVisibilidade() {
 
 // =============
 
+function telaDashbord(){
+    window.location.href = "dashboard.html"
+}
