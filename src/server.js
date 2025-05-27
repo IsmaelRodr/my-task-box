@@ -4,7 +4,9 @@ const mongoose = require('mongoose');
 const config = require('./config/config');
 const routes = require('./routers'); // Ajuste o caminho conforme seu projeto
 const app = express();
+const cors = require('cors');
 
+app.use(cors());
 app.use(express.json());
 app.use(routes);
 
