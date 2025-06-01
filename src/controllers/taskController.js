@@ -1,4 +1,5 @@
 const Task = require('../models/Task');
+const TaskService = require('../services/taskService');
 
 class TaskController {
   // Busca todas as tarefas do usuário autenticado
@@ -25,6 +26,23 @@ class TaskController {
       res.status(500).json({ error: 'Erro ao buscar tarefa' });
     }
   }
+
+  async getTasksAdvanced(req, res) {
+  try {
+    const filters = {
+      status: req.query.status,
+      search: req.query.search,
+      sortBy: req.query.sortBy,
+      order: req.query.order,
+    };
+
+    const tasks = await TaskService.getTasksAdvanced(req.user.id, filters);
+    res.json(tasks);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Erro ao buscar tarefas' });
+  }
+}
 
   // Criar tarefa já vinculada ao usuário
   async create(req, res) {
